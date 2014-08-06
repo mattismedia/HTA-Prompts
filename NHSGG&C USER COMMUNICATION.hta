@@ -1,0 +1,110 @@
+<html>
+<head>
+<hta:application 
+
+APPLICATIONNAME = "NHSGG&C USER COMMUNICATION"
+
+ID = "NHSGG&C USER COMMUNICATION"
+BORDERSTYLE = "Normal"
+CAPTION = "No"
+CONTEXTMENU = "No"
+INNERBORDER = "No"
+MAXIMIZEBUTTON  = "No"
+MINIMIZEBUTTON = "No"
+NAVIGABLE  = "No"
+SCROLL   = "No"
+SCROLLFLAT = "No"
+SELECTION = "No"
+SHOWINTASKBAR  = "No"
+SINGLEINSTANCE  = "Yes"
+SYSMENU   = "No"/>
+
+<STYLE>
+html, body {
+    font-family: Verdana,Arial,Helvetica,sans-serif;
+    font-size: 87%;
+    line-height: 1.5em;
+    margin: 20;
+    padding: 0;
+}
+
+h1 {
+    color: #FF0000;
+    font-size: 1em;
+    text-transform: uppercase;
+    text-align: center;
+}
+h4 {
+    color: #FF0000;
+    font-size: 1em;
+    text-transform: uppercase;
+    text-align: center;
+}
+h2 {
+    color: #011563;
+    font-size: 1em;
+    text-transform: uppercase;
+    text-align: center;
+    
+}
+h3 {
+    color: #011563;
+    font-size: 1em;
+    text-transform: uppercase;
+    text-align: right;
+    
+}
+h5 {
+    color: #FF0000;
+    font-size: 1.2em;
+    text-transform: uppercase;
+    text-align: center;
+    
+}
+h6 {
+    color: #011563;
+    font-size: 0.8em;
+    font-style: italic;
+    text-transform: lowercase;
+    text-align: right;
+    
+}
+
+</STYLE>
+
+<script type='text/vbscript'>
+
+Sub Window_onload()
+Me.ResizeTo 800,300
+Me.MoveTo Screen.Width /2 - 300,Screen.Height / 2 - 300
+Me.SetTimeout "Me.Close()",120000
+End Sub
+</script>
+</head>
+<body scroll="no">
+
+
+<h5>***Automatic PC Restart at 17:15 this evening – Essential Maintenance***</h5>
+<h2>Please note that due to essential maintenance work,  your PC will automatically restart twice from 17:15 this evening.<br>We ask that you save any outstanding work and closed any applications that you may have been using before 17:15 tonight.</h4>
+
+<h3>NHS GG&C HI&T DEPT</h3>
+<h6>[this message will auto close in <span id="timer"></span>secs]</h6>
+
+<script type="text/javascript">
+var count=119; // seconds
+
+var counter=setInterval(timer, 1000); 
+function timer()
+{
+  count=count-1;
+  if (count <= 0)
+  {
+     clearInterval(counter);
+     return;
+  }
+
+ document.getElementById("timer").innerHTML=count + " "; // 
+}
+</script>
+</body>
+</html>

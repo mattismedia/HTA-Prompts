@@ -1,0 +1,108 @@
+<html>
+<head>
+<hta:application 
+
+APPLICATIONNAME = "Force_Restart_Prompt"
+
+ID = "Force_Restart_Prompt"
+BORDERSTYLE = "Normal"
+CAPTION = "No"
+CONTEXTMENU = "No"
+INNERBORDER = "No"
+MAXIMIZEBUTTON  = "No"
+MINIMIZEBUTTON = "No"
+NAVIGABLE  = "No"
+SCROLL   = "No"
+SCROLLFLAT = "No"
+SELECTION = "No"
+SHOWINTASKBAR  = "No"
+SINGLEINSTANCE  = "Yes"
+SYSMENU   = "No"/>
+
+<STYLE>
+html, body {
+    font-family: Verdana,Arial,Helvetica,sans-serif;
+    font-size: 87%;
+    line-height: 1.5em;
+    margin: 20;
+    padding: 0;
+}
+
+h1 {
+    color: #FF0000;
+    font-size: 1em;
+    text-transform: uppercase;
+    text-align: center;
+}
+h4 {
+    color: #FF0000;
+    font-size: 1em;
+    text-transform: uppercase;
+    text-align: center;
+}
+h2 {
+    color: #011563;
+    font-size: 1em;
+    text-transform: uppercase;
+    text-align: center;
+    
+}
+h3 {
+    color: #011563;
+    font-size: 1em;
+    text-transform: uppercase;
+    text-align: right;
+    
+}
+h5 {
+    color: #FF0000;
+    font-size: 1.5em;
+    text-transform: uppercase;
+    text-align: center;
+    
+}
+h6 {
+    color: #011563;
+    font-size: 0.8em;
+    font-style: italic;
+    text-transform: lowercase;
+    text-align: right;
+    
+}
+
+</STYLE>
+
+<script type='text/vbscript'>
+
+Sub Window_onload()
+Me.ResizeTo 700,200
+Me.MoveTo Screen.Width /2 - 300,Screen.Height / 2 - 300
+Me.SetTimeout "Me.Close()",300000
+End Sub
+</script>
+</head>
+<body scroll="no">
+
+<h5>NHS GG&C HI&T DEPT</h5>
+<h5>*****MANDATORY SYSTEM RESTART*****</h5>
+<h2>Your computer needs to RESTART twice to  apply an important system update.<br>Please save and close all open applications. Your system will restart in</h2><h5><span id="timer"></span>seconds</h5>
+
+
+<script type="text/javascript">
+var count=299; // seconds
+
+var counter=setInterval(timer, 1000); 
+function timer()
+{
+  count=count-1;
+  if (count <= 0)
+  {
+     clearInterval(counter);
+     return;
+  }
+
+ document.getElementById("timer").innerHTML=count + " "; // 
+}
+</script>
+</body>
+</html>

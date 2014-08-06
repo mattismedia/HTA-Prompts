@@ -1,0 +1,888 @@
+﻿<html>
+<head>
+    <meta http-equiv="Content-Language" content="en-us">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    
+    <HTA:APPLICATION ID="oHTA"
+         APPLICATIONNAME="System Center 2012 R2 Configuration Manager Setup"
+         BORDER="dialog"
+         BORDERSTYLE="normal"
+         CAPTION="yes"
+         CONTEXTMENU="no"
+         ICON="../../../../autorun/images/autorun.ico"
+         INNERBORDER="no"
+         MAXIMIZEBUTTON="no"
+         MINIMIZEBUTTON="yes"
+         NAVIGABLE="no"
+         SCROLL="no"
+         SCROLLFLAT="no"
+         SELECTION="no"
+         SHOWINTASKBAR="yes"
+         SINGLEINSTANCE="yes"
+         SYSMENU="yes"
+         VERSION="5.0"
+         WINDOWSTATE="normal"/>
+
+    <script language="javascript" type="text/javascript">
+
+
+
+        // --- Localizable content section begins --- //
+
+        var L_HEADER_INSTALL_VAR_TEXT = "I<u>n</u>stall";
+        var L_HEADER_PREREQ_VAR_TEXT = "<u>A</u>ssess server readiness";
+        var L_HEADER_SETUPDL_VAR_TEXT = "<u>G</u>et the latest Configuration Manager updates";
+        var L_HEADER_CONSOLE_VAR_TEXT = "Install <u>C</u>onfiguration Manager console";
+        var L_HEADER_SCUP_VAR_TEXT = "Download <u>S</u>ystem Center Updates Publisher";
+        var L_HEADER_XPLAT_VAR_TEXT = "Do<u>w</u>nload clients for additional operating systems";
+        //var L_HEADER_RESET_VAR_TEXT = "R<u>e</u>set or reconfigure site";
+
+        var L_HEADER_INSTALL_VAR_DESCRIPTION_TEXT = "Install a Configuration Manager site server on this computer.";
+        var L_HEADER_PREREQ_VAR_DESCRIPTION_TEXT = "Check this computer to see if it meets the necessary prerequisites to install a Configuration Manager site.";
+        var L_HEADER_SETUPDL_VAR_DESCRIPTION_TEXT = "Download the latest updates and prerequisite components to be used by Setup when installing Configuration Manager.";
+        var L_HEADER_CONSOLE_VAR_DESCRIPTION_TEXT = "Install the Configuration Manager administrator console on this computer, which allows you to remotely manage Configuration Manager site servers from this computer.";
+        var L_HEADER_SCUP_VAR_DESCRIPTION_TEXT = "Download the latest version of the System Center Updates Publisher.  This is a standalone tool that allows you to publish your own custom updates to WSUS, allowing you to deploy those updates to Configuration Manager clients.";
+        //var L_HEADER_RESET_VAR_DESCRIPTION_TEXT = "Reset file, folder, and registry permissions; manage the SMS Providers for your site; or change the location of your site database.";
+
+        var L_LINK_RESTART_VAR_TEXT = "Restart may be required";
+        var L_LINK_READBEFORE_VAR_TEXT = "Be<u>f</u>ore you begin";
+
+        var L_HEADER_OPTIONAL_VAR_TEXT = "Tools and Standalone Components";
+        var L_HEADER_RESOURCES_VAR_TEXT = "Additional Resources";
+        
+        var L_NAV_RELEASE_VAR_TEXT = "<u>R</u>elease Notes";
+        var L_NAV_READDOC_VAR_TEXT = "Read <u>D</u>ocumentation";
+        var L_NAV_INSTALLASSISTANCE_VAR_TEXT = "<u>O</u>btain Installation Assistance";
+        var L_NAV_CONFIGMGRCOMMUNITY_VAR_TEXT = "Configuration Manager Co<u>m</u>munity";
+        var L_NAV_CONFIGMGRHOME_VAR_TEXT = "Configuration Manager <u>H</u>ome";
+        var L_NAV_BROWSE_VAR_TEXT = "<u>B</u>rowse the Installation Media";
+        var L_LINK_EXIT_VAR_TEXT = "E<u>x</u>it";
+
+        var L_LINKINSTALL_KEYNAME = "n";
+        var L_LINKPREREQ_KEYNAME = "a";
+        var L_LINKSETUPDL_KEYNAME = "g";
+        var L_LINKCONSOLE_KEYNAME = "c";
+        var L_LINKSCUP_KEYNAME = "s";
+        var L_LINKXPLAT_KEYNAME = "w";
+        //var L_LINKRESET_KEYNAME = "e";
+        var L_LINKREADBEFORE_KEYNAME = "f";
+        var L_LINKRELEASE_KEYNAME = "r";
+        var L_LINKREADDOC_KEYNAME = "d";
+        var L_LINKINSTALLASSISTANCE_KEYNAME = "o";
+        var L_LINKCONFIGMGRCOMMUNITY_KEYNAME = "m";
+        var L_LINKCONFIGMGRHOME_KEYNAME = "h";
+        var L_LINKBROWSE_KEYNAME = "b";
+        var L_LINKEXIT_KEYNAME = "x";
+
+        var L_INFO_INSTALL_VAR_TEXT = "Launch the Setup Wizard to install a System Center Configuration Manager site server.";
+        var L_INFO_PREREQ_VAR_TEXT = "Check this computer to see if it meets the necessary prerequisites to install a Configuration Manager site.";
+        var L_INFO_SETUPDL_VAR_TEXT = "Download the latest updates and prerequisite components to be used by Setup when installing Configuration Manager.";
+        var L_INFO_CONSOLE_VAR_TEXT = "Launch the Setup Wizard to install a System Center Configuration Manager administrator console.";
+        var L_INFO_SCUP_VAR_TEXT = "Download the latest version of the System Center Updates Publisher.  This is a standalone tool that allows you to publish your own custom updates to WSUS, allowing you to deploy those updates to Configuration Manager clients.";
+        //var L_INFO_RESET_VAR_TEXT = "Launch the Setup Wizard to reset file, folder, and registry permissions; manage the SMS Providers for your site; or change the location of your site database.";
+        var L_INFO_RELEASE_VAR_TEXT = "Read the release notes to learn more about this version of System Center Configuration Manager.";
+        var L_INFO_INSTALLGIUDE_VAR_TEXT = "Step-by-step guide to install System Center Configuration Manager.";
+        var L_INFO_READDOC_VAR_TEXT = "Read the System Center Configuration Manager online documentation for this release.";
+        var L_INFO_INSTALLASSISTANCE_VAR_TEXT = "Visit the System Center Configuration Manager Setup/Deployment forum on Microsoft TechNet to get assistance from fellow community members with installing or configuring the product.";
+        var L_INFO_CONFIGMGRCOMMUNITY_VAR_TEXT = "Visit the System Center Configuration Manager Community page to get connected with other Configuration Manager community members.";
+        var L_INFO_CONFIGMGRHOME_VAR_TEXT = "Visit the System Center Configuration Manager website to learn more about System Center Configuration Manager and access other helpful resources.";
+        var L_INFO_BROWSE_VAR_TEXT = "Browse the files on this System Center Configuration Manager installation media.";
+
+        var L_COPYRIGHT_TEXT = "&copy; 2013 Microsoft Corporation. All rights reserved.";
+
+        var L_MESSAGE_NOT_IMPLEMENTED_VAR_TEXT = "This feature is not yet implemented in this version of the product.";
+        var L_MESSAGE_UNSUPPORTED_OS_VAR_TEXT = "The link you selected requires a 64-bit operating system and is not supported on this computer.  Only the Configuration Manager console is supported on a 32-bit operating system.";
+        var L_MESSAGE_FILE_NOT_FOUND_VAR_TEXT = "A required file could not be located: \n\n";
+        var L_MESSAGE_UNKNOWN_ERROR_VAR_TEXT = "An unknown error occurred trying to launch an external command: \n\n";
+        var L_MESSAGE_ERROR_NUMBER_VAR_TEXT = "\n\nError: ";
+
+        var L_TITLE_TEXT = "System Center 2012 R2 Configuration Manager Setup";
+
+        // --- Localizable content section ends --- //
+
+
+
+        // Set autorun window title.
+        document.write("<title>" + L_TITLE_TEXT + "</title>");
+
+        // Set the image file path.
+        var rootDir = GetRootDirectory();
+        var imageDir = rootDir + "AutoRun/Images/";
+
+        // Set the fixed window size.
+        var startWindowWidth = 735;
+        var startWindowHeight = 555;
+
+        // Set the default start window location.
+        var startWindowLeft = 200;
+        var startWindowTop = 100;
+
+        // Set the fade in delay.
+        var fadeDelay1 = 200;
+        var fadeDelay2 = 250;
+
+        // Set miscellaneous variables
+        var isMouseOut = true;
+        var dragApproved = false;
+        var offsetX = 0;
+        var offsetY = 0;
+        var moveByRef = window.moveBy;
+
+        // Check if the screen size info is available.
+        if (window.screen) {
+            // Calculate the real default window location.
+            startWindowLeft = (window.screen.availWidth - startWindowWidth) / 2;
+            startWindowTop = (window.screen.availHeight - startWindowHeight) / 2;
+        }
+
+        // Center the start window on the screen.fs
+        window.moveTo(startWindowLeft, startWindowTop);
+        window.resizeTo(startWindowWidth, startWindowHeight);
+
+        function windowOnLoad() {
+            // Set access key for the links.
+            document.all["linkInstall"].accessKey = L_LINKINSTALL_KEYNAME;
+            document.all["linkPrereq"].accessKey = L_LINKPREREQ_KEYNAME;
+            document.all["linkSetupDL"].accessKey = L_LINKSETUPDL_KEYNAME;
+            document.all["linkConsole"].accessKey = L_LINKCONSOLE_KEYNAME;
+            document.all["linkSCUP"].accessKey = L_LINKSCUP_KEYNAME;
+            document.all["linkXPLAT"].accessKey = L_LINKXPLAT_KEYNAME;
+            //document.all["linkReset"].accessKey = L_LINKRESET_KEYNAME;
+            document.all["linkReadBefore"].accessKey = L_LINKREADBEFORE_KEYNAME;
+            document.all["linkRelease"].accessKey = L_LINKRELEASE_KEYNAME;
+            document.all["linkReadDoc"].accessKey = L_LINKREADDOC_KEYNAME;
+            document.all["linkInstallAssistance"].accessKey = L_LINKINSTALLASSISTANCE_KEYNAME;
+            document.all["linkConfigMgrCommunity"].accessKey = L_LINKCONFIGMGRCOMMUNITY_KEYNAME;
+            document.all["linkConfigMgrHome"].accessKey = L_LINKCONFIGMGRHOME_KEYNAME;
+            document.all["linkBrowse"].accessKey = L_LINKBROWSE_KEYNAME;
+            document.all["linkExit"].accessKey = L_LINKEXIT_KEYNAME;
+            
+            
+            logo.src = imageDir + "CMLogo.png";
+            grid.src = imageDir + "SuperGrid.png";
+            infoIcon.src = imageDir + "Information_16.png";
+            helpIcon.src = imageDir + "Help_16.png";
+
+            // document.all["linkInstall"].focus()
+        }
+
+        function openPopup(sMessage) {
+            var oPopup = window.createPopup();
+            var oPopBody = oPopup.document.body;
+
+            oPopBody.style.backgroundColor = "lightyellow";
+            oPopBody.style.border = "solid black 1px";
+            // The following HTML that populates the popup object with a string.
+            oPopBody.innerHTML = sMessage;
+            oPopup.show(10, 10, 480, 25, document.body);
+        }
+
+        function onExitKeyDown() {
+            if (event.keyCode == 13)
+                self.close();
+        }
+
+        function onExitFocus() {
+            if (event.altKey)
+                self.close();
+        }
+
+        function onLinkFocus(oLink) {
+            if (event.altKey)
+                oLink.click();
+        }
+
+        function onLinkClick(oLink) {
+            window.focus();
+            return true;
+        }
+
+        function onMouseOver(imageFile, infoText) {
+            isMouseOut = false;
+
+            linkInfoImage.src = imageDir + imageFile;
+            linkInfoText.innerHTML = infoText;
+
+            if (linkInfoText.filters[0] != null && linkInfoImageDiv.filters[0] != null) {
+                window.setTimeout('linkInfoFadeIn()', fadeDelay1);
+            }
+            else {
+                linkInfoShow();
+            }
+        }
+
+        function linkInfoShow() {
+            if (isMouseOut) return;
+
+            if (linkInfoImage.style.display != "block") {
+                linkInfoImage.style.display = "block";
+                linkInfoText.style.display = "block";
+            }
+
+
+        }
+
+        function linkInfoFadeIn() {
+            if (isMouseOut) return;
+
+            if ((linkInfoImage.style.display != "block") && (linkInfoImageDiv.filters[0] != null)) {
+                linkInfoImageDiv.filters[0].Stop();
+                linkInfoImageDiv.filters[0].Apply();
+
+                linkInfoImage.style.display = "block";
+
+                linkInfoImageDiv.filters[0].Play();
+
+                window.setTimeout('linkInfo2ndFadeIn()', fadeDelay2);
+            }
+        }
+
+        function linkInfo2ndFadeIn() {
+            if (isMouseOut) return;
+
+            if ((linkInfoText.style.display != "block") && (linkInfoText.filters[0] != null)) {
+                linkInfoText.filters[0].Stop();
+                linkInfoText.filters[0].Apply();
+
+                linkInfoText.style.display = "block";
+
+                linkInfoText.filters[0].Play();
+            }
+        }
+
+        function linkInfoFadeOut() {
+            isMouseOut = true;
+
+
+            if (linkInfoText.filters[0] != null) {
+                linkInfoText.filters[0].Stop();
+            }
+            linkInfoText.style.display = "none";
+
+            if (linkInfoImageDiv.filters[0] != null) {
+                linkInfoImageDiv.filters[0].Stop();
+            }
+
+            linkInfoImage.style.display = "none";
+        }
+
+        // Due to IE security patch KB824145, we can no longer simulate the dragging of the browser window.  
+        // This is the next best thing we can do at this moment.
+        function startDrag() {
+            offsetX = event.clientX
+            offsetY = event.clientY
+
+            dragApproved = true
+        }
+
+        function stopDrag() {
+            if (dragApproved)
+                top.moveBy(event.clientX - offsetX, event.clientY - offsetY);
+
+            dragApproved = false;
+        }
+
+        function onClickUnsupportedItem(sApp) {
+            window.alert(L_MESSAGE_NOT_IMPLEMENTED_VAR_TEXT);
+        }
+
+        function onClickLink64App(sApp) {
+            var oShell = new ActiveXObject("WScript.Shell");
+            var wshSysEnv = oShell.Environment("SYSTEM");
+
+            if (wshSysEnv("PROCESSOR_ARCHITECTURE") == "AMD64") {
+                try {
+                    var commandLine = oHTA.commandLine;
+                    var oShell = new ActiveXObject("WScript.Shell");
+                    var sCommandLine = commandLine.toUpperCase();
+
+                    oShell.CurrentDirectory = sCommandLine.substr(1, sCommandLine.indexOf("\\SMSSETUP") - 1);
+
+                    oShell.Run(sApp);
+                }
+                catch (e) {
+                    //=== catch errors ===//
+                    if (e.number == -2147024894) {
+                        //=== file not found ===//
+                        window.alert(L_MESSAGE_FILE_NOT_FOUND_VAR_TEXT + '"' + sApp + '"');
+                    }
+                    else if (e.number != -2147023673) {
+                        //=== unknown error ===//
+                        window.alert(L_MESSAGE_UNKNOWN_ERROR_VAR_TEXT + '"' + sApp + '"' + L_MESSAGE_ERROR_NUMBER_VAR_TEXT + e.number);
+                    }
+                }
+            }
+            else {
+                window.alert(L_MESSAGE_UNSUPPORTED_OS_VAR_TEXT);
+            }
+
+        }
+
+        function onClickLinkApp(sApp) {
+            try {
+                var commandLine = oHTA.commandLine;
+                var oShell = new ActiveXObject("WScript.Shell");
+                var sCommandLine = commandLine.toUpperCase();
+
+                oShell.CurrentDirectory = sCommandLine.substr(1, sCommandLine.indexOf("\\SMSSETUP") - 1);
+
+                oShell.Run(sApp);
+            }
+            catch (e) {
+                //=== catch errors ===//
+                if (e.number == -2147024894) {
+                    //=== file not found ===//
+                    window.alert(L_MESSAGE_FILE_NOT_FOUND_VAR_TEXT + '"' + sApp + '"');
+                }
+                else if (e.number != -2147023673) {
+                    //=== unknown error ===//
+                    window.alert(L_MESSAGE_UNKNOWN_ERROR_VAR_TEXT + '"' + sApp + '"' + L_MESSAGE_ERROR_NUMBER_VAR_TEXT + e.number);
+                }
+            }
+        }
+
+        function onClickLinkBrowse() {
+            try {
+                var commandLine = oHTA.commandLine;
+                var oShell = new ActiveXObject("WScript.Shell");
+                var sCommandLine = commandLine.toUpperCase();
+
+                oShell.CurrentDirectory = sCommandLine.substr(1, sCommandLine.indexOf("\\SMSSETUP") - 1);
+
+                oShell.Run("explorer.exe .");
+            }
+            catch (e) {
+                //=== catch errors ===//
+                if (e.number == -2147024894) {
+                    //=== file not found ===//
+                    window.alert(L_MESSAGE_FILE_NOT_FOUND_VAR_TEXT + '"explorer.exe"');
+                }
+                else if (e.number != -2147023673) {
+                    //=== unknown error ===//
+                    window.alert(L_MESSAGE_UNKNOWN_ERROR_VAR_TEXT + '"explorer.exe"' + L_MESSAGE_ERROR_NUMBER_VAR_TEXT + e.number);
+                }
+            }
+        }
+
+        function GetRootDirectory() {
+            var sPath = "../../../../";
+            return sPath;
+        }
+
+    </script>
+
+    <style>
+        /*-- START CSS STYLES --*/
+        /*-- DEFAULT --*/
+        body
+        {
+            background-repeat: no-repeat;
+            background-color: #e0e0e0;
+            margin: 0px;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        /*-- NAVIGATION --*/
+        a:link
+        {
+            text-decoration: none;
+            color: #000000;
+        }
+        a:visited
+        {
+            text-decoration: none;
+            color: #000000;
+        }
+        a:active
+        {
+            text-decoration: none;
+            color: #000000;
+        }
+        a:hover
+        {
+            text-decoration: underline;
+            color: darkblue;
+        }
+        .mainTitles a:link
+        {
+            text-decoration: none;
+            color: #0066CC;
+        }
+        .mainTitles a:visited
+        {
+            text-decoration: none;
+            color: #0066CC;
+        }
+        .mainTitles a:active
+        {
+            text-decoration: none;
+            color: #0066CC;
+        }
+        .mainTitles a:hover
+        {
+            text-decoration: underline;
+            color: #0066CC;
+        }
+        .helpcopy a:link
+        {
+            text-decoration: none;
+            color: #0066CC;
+        }
+        .helpcopy a:visited
+        {
+            text-decoration: none;
+            color: #0066CC;
+        }
+        .helpcopy a:active
+        {
+            text-decoration: none;
+            color: #0066CC;
+        }
+        .helpcopy a:hover
+        {
+            text-decoration: underline;
+            color: #0066CC;
+        }
+        .optcopy a:link
+        {
+            text-decoration: none;
+            color: #0066CC;
+        }
+        .optcopy a:visited
+        {
+            text-decoration: none;
+            color: #0066CC;
+        }
+        .optcopy a:active
+        {
+            text-decoration: none;
+            color: #0066CC;
+        }
+        .optcopy a:hover
+        {
+            text-decoration: underline;
+            color: #0066CC;
+        }
+        .rescopy a:link
+        {
+            text-decoration: none;
+            color: #0066CC;
+        }
+        .rescopy a:visited
+        {
+            text-decoration: none;
+            color: #0066CC;
+        }
+        .rescopy a:active
+        {
+            text-decoration: none;
+            color: #0066CC;
+        }
+        .rescopy a:hover
+        {
+            text-decoration: underline;
+            color: #0066CC;
+        }
+        .normalLink
+        {
+            color: #0066CC;
+            vertical-align: text-bottom;
+        }
+        .exitLink
+        {
+            font-family: Arial;
+            font-size: 10pt;
+            color: #000000;
+            vertical-align: text-bottom;
+            text-align: right;
+            position: absolute;
+            top: auto;
+            bottom: 22px;
+            left: auto;
+            right: 30px;
+        }
+        .exitLinkMouseOver
+        {
+            font-family: Arial;
+            font-size: 10pt;
+            color: darkblue;
+            text-decoration: underline;
+            cursor: hand;
+            vertical-align: text-bottom;
+            text-align: right;
+            position: absolute;
+            top: auto;
+            bottom: 22px;
+            left: auto;
+            right: 30px;
+        }
+        /*-- LAYOUT --*/
+        .roottable
+        {
+            border-left: none;
+            border-right: none;
+            border-bottom: none;
+            border-top: none;
+            position: absolute;
+            top: 180px;
+            bottom: 52px;
+            left: 91px;
+            right: 90px;
+        }
+        .mainTitles
+        {
+            font-family: "Segoe UI",Tahoma;
+            font-size: 19px;
+            font-weight: normal;
+            color: #0066CC;
+            padding-top: 0px;
+            padding-bottom: 11px;
+            margin-bottom: 0px;
+        }
+        .infocopy
+        {
+            font-family: "Segoe UI",Tahoma;
+            font-size: 11px;
+            color: #000000;
+            padding-left: 5px;
+            padding-bottom: 11px;
+        }
+        .helpcopy
+        {
+            font-family: "Segoe UI",Tahoma;
+            font-size: 11px;
+            color: #0066CC;
+            padding-left: 5px;
+            padding-bottom: 11px;
+        }
+        .opttitle
+        {
+            font-family: "Segoe UI",Tahoma;
+            font-size: 11px;
+            color: #000000;
+            font-weight: bold;
+            padding-bottom: 11px;
+        }
+        .optcopy
+        {
+            font-family: "Segoe UI",Tahoma;
+            font-size: 11px;
+            color: #0066CC;
+            padding-left: 0px;
+            padding-top: 0px;
+            padding-bottom: 11px;
+        }
+        .restitle
+        {
+            font-family: "Segoe UI",Tahoma;
+            font-size: 11px;
+            color: #000000;
+            font-weight: bold;
+            padding-bottom: 11px;
+        }
+        .rescopy
+        {
+            font-family: "Segoe UI",Tahoma;
+            font-size: 11px;
+            color: #0066CC;
+            padding-left: 0px;
+            padding-top: 0px;
+            padding-bottom: 11px;
+        }
+        .copyright
+        {
+            font-family: "Segoe UI" ,Tahoma;
+            font-size: 9px;
+            color: black;
+            position: absolute;
+            top: auto;
+            bottom: 25px;
+            left: 25px;
+            right: auto;
+        }
+        /*-- IMAGES --*/
+        .logo
+        {
+            position: absolute;
+            top: 38px;
+            bottom: auto;
+            left: 37px;
+            right: auto;
+        }
+        .grid
+        {
+            position: absolute;
+            top: 0px;
+            bottom: auto;
+            left: auto;
+            right: 0px;
+        }
+        .helpImg
+        {
+            height: 16px;
+            width: 16px;
+            padding-bottom: 5px;
+        }
+        .infoImg
+        {
+            height: 16px;
+            width: 16px;
+            padding-bottom: 5px;
+        }
+        .horizontalLine
+        {
+            position: absolute;
+            top: auto;
+            bottom: 52px;
+            left: auto;
+            right: auto;
+        }
+        /*-- END CSS STYLES --*/
+    </style>
+</head>
+<body leftmargin="0" topmargin="0" rightmargin="0" bottommargin="0" onload="windowOnLoad()"
+    id="theBody">
+    <img id="logo" height="174" src="images/CMLogo.png" width="607" class="logo" /> 
+    <img id="grid" src="images/SuperGrid.png" class="grid" /> 
+    <table class="roottable" border="0" cellspacing="0" cellpadding="0">
+        <tr>
+            <td class="mainTitles">
+                <a href="#" tabindex="1" name="linkInstall" id="linkInstall" onclick="onClickLink64App('smssetup\\bin\\x64\\setup.exe')"
+                    onfocus="onLinkFocus(this)">
+
+                    <script language="javascript" type="text/javascript">
+                        document.write(L_HEADER_INSTALL_VAR_TEXT)
+                    </script>
+
+                </a>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <table border="0" cellspacing="0" cellpadding="0">
+                    <tr>
+                        <td class="infoImg">
+                            <img id="infoIcon" src="images/Information_16.png" />
+                        </td>
+                        <td class="infocopy">
+
+                            <script language="javascript" type="text/javascript">
+                                document.write(L_LINK_RESTART_VAR_TEXT)
+                            </script>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="helpImg">
+                            <img id="helpIcon" src="images/Help_16.png" />
+                        </td>
+                        <td class="helpcopy">
+                            <a href="http://go.microsoft.com/fwlink/p/?LinkId=302291" target="_blank" tabindex="2"
+                                name="linkReadBefore" id="linkReadBefore" onclick="onLinkClick(this)" onfocus="onLinkFocus(this)">
+
+                                <script language="javascript" type="text/javascript">
+                                    document.write(L_LINK_READBEFORE_VAR_TEXT)
+                                </script>
+
+                            </a>
+                        </td>
+                    </tr>
+                </table>
+            </tr>
+        <tr style="padding-top: 20px;">
+            <td width="277px" style="vertical-align: top; margin-right: 10px;">
+                <table border="0" cellspacing="0" cellpadding="0">
+                    <tr>
+                        <td class="opttitle">
+
+                            <script language="javascript" type="text/javascript">
+                                document.write(L_HEADER_OPTIONAL_VAR_TEXT)
+                            </script>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="optcopy">
+                            <a href="http://go.microsoft.com/fwlink/p/?LinkId=302292" target="_blank" tabindex="3" 
+                                name="linkPrereq" id="linkPrereq" onclick="onLinkClick(this)" onfocus="onLinkFocus(this)">
+
+                                <script language="javascript" type="text/javascript">
+                                    document.write(L_HEADER_PREREQ_VAR_TEXT)
+                                </script>
+
+                            </a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="optcopy">
+                            <a href="#" tabindex="4" name="linkSetupDL" id="linkSetupDL" onclick="onClickLink64App('smssetup\\bin\\x64\\setupdl.exe')"
+                                onfocus="onLinkFocus(this)">
+
+                                <script language="javascript" type="text/javascript">
+                                    document.write(L_HEADER_SETUPDL_VAR_TEXT)
+                                </script>
+
+                            </a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="optcopy">
+                            <a href="#" tabindex="5" name="linkConsole" id="linkConsole" onclick="onClickLinkApp('smssetup\\bin\\i386\\consolesetup.exe')"
+                                onfocus="onLinkFocus(this)">
+
+                                <script language="javascript" type="text/javascript">
+                                    document.write(L_HEADER_CONSOLE_VAR_TEXT)
+                                </script>
+
+                            </a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="optcopy">
+                            <a href="http://go.microsoft.com/fwlink/p/?LinkId=302293" target="_blank" tabindex="6"
+                                name="linkSCUP" id="linkSCUP" onclick="onLinkClick(this)" onfocus="onLinkFocus(this)">
+
+                                <script language="javascript" type="text/javascript">
+                                    document.write(L_HEADER_SCUP_VAR_TEXT)
+                                </script>
+
+                            </a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="optcopy">
+                            <a href="http://go.microsoft.com/fwlink/p/?LinkId=316448" target="_blank" tabindex="7"
+                                name="linkXPLAT" id="linkXPLAT" onclick="onLinkClick(this)" onfocus="onLinkFocus(this)">
+
+                                <script language="javascript" type="text/javascript">
+                                    document.write(L_HEADER_XPLAT_VAR_TEXT)
+                                </script>
+
+                            </a>
+                        </td>
+                    </tr>
+                    <!--<tr>
+                        <td class="optcopy">
+                            <a href="#" tabindex="7" name="linkReset" id="linkReset" onclick="onClickUnsupportedItem(this)"
+                                onfocus="onLinkFocus(this)">
+
+                                <script language="javascript" type="text/javascript">
+                                    document.write(L_HEADER_RESET_VAR_TEXT)
+                                </script>
+
+                            </a>
+                        </td>
+                    </tr>-->
+                </table>
+            </td>
+            <td width="257px" style="vertical-align: top; padding-left: 20px; margin-right: 10px;">
+                <table border="0" cellspacing="0" cellpadding="0">
+                    <tr>
+                        <td class="restitle">
+
+                            <script language="javascript" type="text/javascript">
+                                document.write(L_HEADER_RESOURCES_VAR_TEXT)
+                            </script>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="rescopy">
+                            <a href="http://go.microsoft.com/fwlink/p/?LinkId=316449" target="_blank" tabindex="8"
+                                name="linkRelease" id="linkRelease" onclick="onLinkClick(this)" onfocus="onLinkFocus(this)">
+
+                                <script language="javascript" type="text/javascript">
+                                    document.write(L_NAV_RELEASE_VAR_TEXT)
+                                </script>
+
+                            </a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="rescopy">
+                            <a href="http://go.microsoft.com/fwlink/p/?LinkId=302295" target="_blank" tabindex="10"
+                                name="linkReadDoc" id="linkReadDoc" onclick="onLinkClick(this)" onfocus="onLinkFocus(this)">
+
+                                <script language="javascript" type="text/javascript">
+                                    document.write(L_NAV_READDOC_VAR_TEXT)
+                                </script>
+
+                            </a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="rescopy">
+                            <a href="http://go.microsoft.com/fwlink/p/?LinkId=302296" target="_blank" tabindex="11"
+                                name="linkInstallAssistance" id="linkInstallAssistance" onclick="onLinkClick(this)" onfocus="onLinkFocus(this)">
+
+                                <script language="javascript" type="text/javascript">
+                                    document.write(L_NAV_INSTALLASSISTANCE_VAR_TEXT)
+                                </script>
+
+                            </a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="rescopy">
+                            <a href="http://go.microsoft.com/fwlink/p/?LinkId=302297" target="_blank" tabindex="12"
+                                name="linkConfigMgrCommunity" id="linkConfigMgrCommunity" onclick="onLinkClick(this)" onfocus="onLinkFocus(this)">
+
+                                <script language="javascript" type="text/javascript">
+                                    document.write(L_NAV_CONFIGMGRCOMMUNITY_VAR_TEXT)
+                                </script>
+
+                            </a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="rescopy">
+                            <a href="http://go.microsoft.com/fwlink/p/?LinkId=302298" target="_blank" tabindex="13"
+                                name="linkConfigMgrHome" id="linkConfigMgrHome" onclick="onLinkClick(this)" onfocus="onLinkFocus(this)">
+
+                                <script language="javascript" type="text/javascript">
+                                    document.write(L_NAV_CONFIGMGRHOME_VAR_TEXT)
+                                </script>
+
+                            </a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="rescopy">
+                            <a href="#" tabindex="14"
+                                name="linkBrowse" id="linkBrowse" onclick="onClickLinkBrowse()" onfocus="onLinkFocus(this)">
+
+                                <script language="javascript" type="text/javascript">
+                                    document.write(L_NAV_BROWSE_VAR_TEXT)
+                                </script>
+
+                            </a>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
+    <div>
+        <span class="horizontalLine">
+            <hr />
+        </span>
+    </div>
+    <div>
+        <span class="copyright">
+
+            <script language="javascript" type="text/javascript">
+                document.write(L_COPYRIGHT_TEXT)
+            </script>
+
+        </span>
+    </div>
+    <div>
+        <span onClick="self.close()" class="exitLink" onMouseOver="this.className='exitLinkMouseOver'" onMouseOut="this.className='exitLink'"
+            tabIndex="16" onkeydown="onExitKeyDown()" onFocus="onExitFocus()" id="linkExit" name="linkExit">
+
+            <script language="javascript" type="text/javascript">
+                document.write(L_LINK_EXIT_VAR_TEXT)
+            </script>
+
+        </span>
+    </div>
+</body>
