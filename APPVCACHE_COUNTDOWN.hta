@@ -1,0 +1,111 @@
+<head> 
+<HTA:APPLICATION  
+    APPLICATIONNAME="APPVCACHE COUNTDOWN" 
+    SCROLL="no" 
+    SINGLEINSTANCE="yes" 
+    WINDOWSTATE="Normal" 
+    CAPTION="yes" 
+    MAXIMIZEBUTTON="no" 
+    MINIMIZEBUTTON="no" 
+    SYSMENU="no" 
+    BORDER="thin" 
+    BORDERSTYLE="Normal" 
+    CONTEXTMENU="no" 
+    SELECTION="no" 
+     > 
+  <style>
+   body
+        {	background-repeat: no-repeat;
+		background-color: #000;
+            	margin: 0px;
+		padding: 20px;
+            	font-family: Arial, Helvetica, sans-serif;
+		font-size: 1.5em;
+		color: #fff;
+	    
+        }
+
+</style>
+</head> 
+ 
+<title>APPVCACHE COUNTDOWN</title> 
+ 
+<SCRIPT language="VBScript"> 
+ 
+    Dim pbTimerID 
+    Dim pbHTML  
+    Dim pbWaitTime 
+    Dim pbHeight 
+    Dim pbWidth 
+    Dim pbBorder 
+    Dim pbUnloadedColor 
+    Dim pbLoadedColor 
+    Dim pbStartTime 
+ 
+    Sub Window_OnLoad 
+        window.resizeTo 500,300         
+        ' Progress Bar Settings 
+        pbWaitTime = 86400  ' How many seconds the progress bar lasts 
+        pbHeight = 7        ' Progress bar height 
+        pbWidth= 420         ' Progress bar width 
+        pbUnloadedColor="grey"        ' Color of unloaded area 
+        pbLoadedColor="orange"        ' Color of loaded area 
+        pbBorder="black"        ' Color of Progress bar border 
+         
+        ' Don't edit these things 
+        pbStartTime = Now 
+        rProgressbar 
+        pbTimerID = window.setInterval("rProgressbar", 200) 
+         
+    End Sub 
+ 
+ 
+    Sub rProgressbar 
+        pbHTML = "" 
+        pbSecsPassed = DateDiff("s",pbStartTime,Now) 
+        pbMinsToGo =  Int((pbWaitTime - pbSecsPassed) / 60) 
+        pbSecsToGo = Int((pbWaitTime - pbSecsPassed) - (pbMinsToGo * 60)) 
+        if pbSecsToGo < 10 then 
+            pbSecsToGo = "0" & pbSecsToGo  
+        end if 
+        pbLoadedWidth = (pbSecsPassed / pbWaittime) * pbWidth 
+        pbUnloadedWidth = pbWidth - pbLoadedWidth 
+        pbHTML = pbHTML & "<table border=1 bordercolor=" & pbBorder & " cellpadding=0 cellspacing=0 width=" & pbWidth & "><tr>" 
+        pbHTML = pbHTML & "<th width=" & pbLoadedWidth & " height=" & pbHeight & "align=left bgcolor="  & pbLoadedColor & "></th>" 
+        pbHTML = pbHTML & "<th width=" & pbUnloadedWidth & " height=" & pbHeight & "align=left bgcolor="  & pbUnLoadedColor & "></th>" 
+        pbHTML = pbHTML & "</tr></table><br>" 
+        pbHTML = pbHTML & "<table border=0 cellpadding=0 cellspacing=0 width=" & pbWidth & "><tr>" 
+        pbHTML = pbHTML & "<td align=center width=" & pbWidth & "% height=" & pbHeight & ">" & pbMinsToGo & ":" & pbSecsToGo & " remaining</td>" 
+        pbHTML = pbHTML & "</tr></table>" 
+        progressbar.InnerHTML = pbHTML 
+        if DateDiff("s",pbStartTime,Now) >= pbWaitTime then 
+            StopTimer 
+            DoAction 
+        end if 
+    End Sub 
+     
+    Sub StopTimer 
+        window.clearInterval(PBTimerID) 
+    End Sub 
+     
+    Sub DoAction 
+        'Set WshShell = CreateObject("WScript.Shell") 
+        'Return = Me.Close()     
+        Self.close 
+    End Sub 
+     
+    Sub CancelAction 
+        On Error Resume Next 
+        Self.Close 
+    End Sub 
+</SCRIPT> 
+ 
+<body> 
+<div align="center"> 
+TIME LEFT BEFORE THE FSD IS DELETED<br><br>
+
+<span id = "progressbar"></span> 
+<br> 
+    <input type="Button" value="ABORT" name="button1" onClick="CancelAction" class="button"> 
+</div> 
+</body>
