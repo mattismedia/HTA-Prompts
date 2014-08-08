@@ -1,0 +1,90 @@
+<html>
+<head> 
+<HTA:APPLICATION  
+    APPLICATIONNAME="APPVCACHE COUNTDOWN" 
+    SCROLL="no" 
+    SINGLEINSTANCE="yes" 
+    WINDOWSTATE="Normal" 
+    CAPTION="yes" 
+    MAXIMIZEBUTTON="no" 
+    MINIMIZEBUTTON="no" 
+    SYSMENU="no" 
+    BORDER="thin" 
+    BORDERSTYLE="Normal" 
+    CONTEXTMENU="no" 
+    SELECTION="no" 
+     > 
+<style>
+body {	background-repeat: no-repeat;
+		background-color: #000;
+        margin: 0px;
+		padding: 20px;
+        font-family: Arial, Helvetica, sans-serif;
+		font-size: 1em;
+		color: #fff;
+}
+h1 {
+    color: #FF6000;
+    font-size: 3em;
+    text-transform: uppercase;
+    text-align: center;
+    
+}
+</style>
+
+<SCRIPT language="VBScript"> 
+
+Sub rTimer
+Dim nTotalSeconds 
+Dim nHours, nMinutes, nSeconds 
+
+nTotalSeconds = 86400
+nHours        = Int( nTotalSeconds / 3600 ) 
+nTotalSeconds = nTotalSeconds - (3600 * nHours) 
+nMinutes      = Int( nTotalSeconds / 60 ) 
+nSeconds      = nTotalSeconds - (60 * nMinutes)
+ 
+Do While nTotalSeconds <= 1
+If nTotalSeconds == 0 Then 
+Exit Do
+End If
+result = nHours & ":" & nMinutes & "0:0" & nSeconds
+countdown.InnerHTML = result
+nTotalSeconds = nTotalSeconds - 1
+Loop
+Self.Close
+End Sub
+
+
+Sub Resize
+Me.ResizeTo 500,300
+Me.MoveTo Screen.Width /2 - 150,Screen.Height / 2 - 150
+rTimer
+End Sub
+
+Sub CancelAction 
+On Error Resume Next 
+Self.Close 
+End Sub
+</SCRIPT>
+
+</head> 
+ 
+<title>APPVCACHE COUNTDOWN</title> 
+
+<body onLoad="Resize">
+<div align="center"> 
+<b>TIME LEFT BEFORE THE FSD IS DELETED</b><br><br>
+
+<h1><span id ="countdown"></span></h1>
+<br> 
+<input type="Button" value="ABORT" name="button1" onClick="CancelAction" class="button"> 
+</div>
+
+
+
+</script>
+</body>
+</html>
+
+Enter file contents here
