@@ -1,8 +1,7 @@
 <!-- 
-HTA countdown and progress bar, by Paul Blair (paulwblair@REMOVETHISlive.com)
-http://thelazysa.com 
+APPVCACHE countdown timer
 
-Modified by M. Balzan 11/08/204
+re-Modified by M. Balzan 11/08/204
 -->
 
 <head>
@@ -56,10 +55,10 @@ h1 {
 	Sub Window_OnLoad
 		window.resizeTo 500,300		
 		' Progress Bar Settings
-		pbWaitTime = 5  ' How many seconds the progress bar lasts
+		pbWaitTime = 86400  ' How many seconds the progress bar lasts
 		pbHeight = 4		' Progress bar height
 		pbWidth= 400 		' Progress bar width
-		pbUnloadedColor="white"		' Color of unloaded area
+		pbUnloadedColor="3D3D3D"		' Color of unloaded area
 		pbLoadedColor="#FF6000"		' Color of loaded area
 		pbBorder="black"		' Color of Progress bar border
 		
