@@ -1,0 +1,151 @@
+<!-- 
+NHSGGC ALERT Countdown Timer
+
+by M. Balzan 11/08/2014
+-->
+
+<head>
+<HTA:APPLICATION 
+	APPLICATIONNAME="NHSGGC UPDATE"
+	SCROLL="no"
+	SCROLLFLAT = "no"
+	SINGLEINSTANCE="yes"
+	CAPTION="no"
+	MAXIMIZEBUTTON="no"
+	MINIMIZEBUTTON="no"
+	SYSMENU="no"
+	BORDERSTYLE="Normal"
+	CONTEXTMENU="no"
+	SELECTION="no"
+	INNERBORDER = "no"
+	SELECTION = "no"
+	 >
+<style>
+body {	background-repeat: no-repeat;
+		background-color: #000;
+        margin: 10px;
+		padding: 10px;
+        font-family: Arial, Helvetica, sans-serif;
+		font-size: 1.1em;
+		color: #fff;
+}
+h1 {
+    color: #00c7ff;
+    font-size: 3em;
+    text-transform: uppercase;
+    text-align: center;
+    
+}
+h2 {
+    color: #00c7ff;
+    font-size: 1.75em;
+    text-transform: uppercase;
+    text-align: center;
+    
+}
+h3 {padding: 0px;
+    color: #00c7ff;
+}
+.button {
+    background-color: #00c7ff; /* Blue */
+    border: none;
+    color: white;
+    padding: 12px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 20px;
+}
+</style>
+</head>
+
+<title>NHSGGC APPLICATION UPDATE ALERT</title>
+
+<SCRIPT language="VBScript">
+
+	Dim pbTimerID
+	Dim pbHTML 
+	Dim pbWaitTime
+	Dim pbHeight
+	Dim pbWidth
+	Dim pbBorder
+	Dim pbUnloadedColor
+	Dim pbLoadedColor
+	Dim pbStartTime
+
+	Sub Window_OnLoad
+		window.resizeTo 600,550	
+		Me.MoveTo Screen.Width /2 - 300,Screen.Height / 2 - 275	
+		' Progress Bar Settings
+		pbWaitTime = 3600  ' How many seconds the progress bar lasts
+		pbHeight = 4		' Progress bar height
+		pbWidth= 400 		' Progress bar width
+		pbUnloadedColor="3D3D3D"	' Color of unloaded area
+		pbLoadedColor="#00c7ff"		' Color of loaded area
+		pbBorder="black"		' Color of Progress bar border
+		
+		' Don't edit these things
+		pbStartTime = Now
+		rProgressbar
+		pbTimerID = window.setInterval("rProgressbar", 200)
+		
+	End Sub
+
+
+    Sub rProgressbar
+		pbHTML = ""
+		pbSecsPassed = DateDiff("s",pbStartTime,Now)
+		
+		pbHrsToGo = Int((pbWaitTime - pbSecsPassed) / 3600 ) mod 3600
+				
+		pbMinsToGo = Int((pbWaitTime - pbSecsPassed) / 60) mod 60
+		
+		pbSecsToGo = Int((pbWaitTime - pbSecsPassed) mod 3600 / 60)
+		
+		
+		if pbSecsToGo < 10 then
+			pbSecsToGo = "0" & pbSecsToGo 
+		end if
+		if pbMinsToGo < 10 then
+			pbMinsToGo = "0" & pbMinsToGo 
+		end if
+		if pbHrsToGo < 10 then
+			pbHrsToGo = "0" & pbHrsToGo 
+		end if
+		pbLoadedWidth = (pbSecsPassed / pbWaittime) * pbWidth
+		pbUnloadedWidth = pbWidth - pbLoadedWidth
+		pbHTML = pbHTML & "<table border=0 bordercolor=" & pbBorder & " cellpadding=0 cellspacing=0 width=" & pbWidth & "><tr>"
+		pbHTML = pbHTML & "<th width=" & pbLoadedWidth & " height=" & pbHeight & "align=left bgcolor="  & pbLoadedColor & "></th>"
+		pbHTML = pbHTML & "<th width=" & pbUnloadedWidth & " height=" & pbHeight & "align=left bgcolor="  & pbUnLoadedColor & "></th>"
+		pbHTML = pbHTML & "</tr></table><br>"
+		pbHTML = pbHTML & "<table border=0 cellpadding=0 cellspacing=0 width=" & pbWidth & "><tr>"
+		pbHTML = pbHTML & "<td align=center width=" & pbWidth & "% height=" & pbHeight & "><h1>" & pbHrsToGo & ":" & pbMinsToGo & ":" & pbSecsToGo & "</h1></td>"
+		pbHTML = pbHTML & "</tr></table>"
+		progressbar.InnerHTML = pbHTML
+		if DateDiff("s",pbStartTime,Now) >= pbWaitTime then
+			StopTimer
+			DoAction
+		end if
+    End Sub
+	
+	Sub StopTimer
+		window.clearInterval(PBTimerID)
+	End Sub
+	
+    Sub DoAction
+		Self.close
+    End Sub
+	
+    Sub CancelAction
+		On Error Resume Next
+		Self.Close
+    End Sub
+</SCRIPT>
+
+<body background="black">
+<div align="center"><h2>NHSGG&C IE11 UPDATE</h2>
+Your computer will RESTART to apply an important system update. <br><br>Please save and close all your work and ensure that the machine is switched on.<br><br> You can click on the INSTALL NOW button if you are ready to proceed with the update without waiting for the countdown to finish. <br><br>Please type in the Bitlocker code after restart in order to allow the update to continue. <br><br>This update will run in <br><br>
+<span id = "progressbar"></span>
+<input type="button" class="button" value="INSTALL NOW" onclick="self.close()">
+</div>
+</body>
